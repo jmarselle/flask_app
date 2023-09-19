@@ -4,6 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS for styling and layout-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- list.js for filtering -->
+    <link href = "https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js">
+    <!-- Favicon tab icon -->
     <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA3PDTADaMDgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEQAAAAAAAAEiEAAAAAAAESIQAAAAAAASIiEAAAAAASIiIQAAAAARIhEiEAAAABIhASIRAAAAERAAEiEQAAAAAAABIhEAAAAAAAASIRAAAAAAAAEiEQAAAAAAABIhEAAAAAAAASIgAAAAAAAAERAAAAAAAAAAD//wAA+f8AAPD/AADg/wAA4H8AAMB/AACAPwAAhB8AAI4PAAD/BwAA/4MAAP/BAAD/4AAA//AAAP/4AAD//wAA" rel="icon" type="image/x-icon"> 
    </head>
   <style>
@@ -38,11 +41,33 @@
    padding: 20px; 
    }
    .add_button {
-   border-radius: 25px;
+   border-radius: 10px;
    color: blue;
    padding: 15px 32px;
    text-align: center;
    text-decoration: fuchsia;
+   display: inline-block;
+   font-size: 16px;
+   margin: 4px 2px;
+   cursor: pointer;
+   }
+   .edit_button {
+   border-radius: 10px;
+   color: black;
+   background-color:#fae698;
+   padding: 5px 10px;
+   text-align: center;
+   display: inline-block;
+   font-size: 16px;
+   margin: 4px 2px;
+   cursor: pointer;
+   }
+   .delete_button {
+   border-radius: 10px;
+   color: black;
+   background-color:#f07a7a;
+   padding: 5px 10px;
+   text-align: center;
    display: inline-block;
    font-size: 16px;
    margin: 4px 2px;

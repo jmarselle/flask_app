@@ -3,14 +3,13 @@
 <section class="container">
    <div class="row">
       <div class="col">
-         <p>{{task_name}}</p>
-         <p>{{task.task_name}}</p>
-         <!-- {% for todo in todos %}
-         <h3>Task: {{todo.task_name}}</h3>
-         {% endfor %} -->
          <form action='' method="post">
             Are you sure you want to delete this task?
             <br>
+            <b>Task: {{task.task_name}}</b>
+            <br>
+            <b>Status: {{task.status}}</b>
+            <br> <br>
             <input type = "submit" value="Delete">
             <br>
             <a href='/todos'>Go Back</a>

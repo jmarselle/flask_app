@@ -8,39 +8,31 @@
     <br>
    <div class="row">
       <div class="col" >
+        <div id = "todo-list">
          {% for todo in todos %}
-         <form action="" method="get">
-         <ul id =round>
-            <li>Task: {{todo.task_name}}
-            <br>TaskID: {{todo.id}}
+         <ul class = "list">
+            <!-- <ul id =round> -->
+            <li><b>Task: {{todo.task_name}}</b>
+            <!-- <br>TaskID: {{todo.id}} -->
             <br>Due: {{todo.due_date.strftime('%A %b %d %Y')}}
             <br>Status: {{todo.status}}</li>
-
-<!-- attempting to use javascript to get the taskID to loop into the url, but so far, no dice -->
-<!-- the edit task link is edit_task/[id]
-the delete task link is delete_task/[id] -->
-            <a id="dynamic-link" href="/edit_task/1">Edit Task</a>
-            <script>
-                // Define your variable
-                var dynamicValue = {id}; // Replace with your actual variable value
-                    print(dynamicValue)
-                // Get a reference to the <a> element
-                var dynamicLink = document.getElementById("dynamic-link");
-
-                // Set the href attribute using the variable
-                dynamicLink.href = dynamicValue;
-            </script>
-            <!-- the javascript idea stops here but these buttons don't work dynamically-->
-            <a href="{{ url_for('tasks.add_tasks') }}">
-                <button style="background-color:#fae698; color:black; cursor: pointer">Edit Task Placeholder</button>
+            <a href="{{ url_for('tasks.edit_task', id=todo.id) }}">
+                <button class="edit_button ">Edit Task</button>
             </a>
-            <a href="{{ url_for('tasks.add_tasks') }}">
-                <button style="background-color:#f07a7a; color:black; cursor: pointer">Delete Task Placeholder</button>
+            <a href="{{ url_for('tasks.delete', id=todo.id) }}">
+                <button class="delete_button ">Delete Task</button>
             </a>
             <br>
          </ul>
          </form>
          {% endfor %}
+      </div>
+      <script>
+        var options = {
+            valueNames: [ 'status' ]
+        };
+        var hackerList = new List('todo-list', options);
+      </script>
       </div>
    </div>
 </section>

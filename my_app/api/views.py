@@ -52,8 +52,6 @@ def todos():
     todos = Task.query.filter_by(todo_owner = user.id)
     form = TodoForm()
     todos.task_name = form.task_name.data
-    # print("UserID: ",user.id)
-    # print(todos)
     return render_template('todos.html', todos = todos)
 
 @todo.route('/add_todo', methods = ['POST','GET'])
@@ -76,8 +74,6 @@ def add_tasks():
 @todo.route('/edit_task/<int:id>', methods=['GET', 'POST'])
 def edit_task(id):
     url = f'/edit_task/{id}'
-    # print(id)
-    # print(url)
     user = current_user
     form = EditTodoForm()
     task = Task.query.filter_by(id =id,todo_owner = user.id).first()
@@ -106,7 +102,7 @@ def delete(id):
             db.session.commit()
             return redirect('/todos')
         abort(404)
-    return render_template('delete_task.html')
+    return render_template('delete_task.html', task=task)
 
 def users():
     users = User.query.all()
