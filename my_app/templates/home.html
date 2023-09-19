@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+{% block content%}
+<div class="container">
+   <!--Add your rows below:-->
+   <div class="row">
+      <div class="col">
+         
+      </div>
+   </div>
+</div>
+<section class="container">
+   <div class="row">
+      <div class="col" a>
+        <h2>Welcome to your online to-do list!</h2>
+      
+      <a href="{{ url_for('tasks.todos') }}">
+         <button class="add_button ">See My Tasks</button>
+         </a>
+      </div>
+   </div>
+</section>
+{% endblock %}
