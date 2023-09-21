@@ -3,25 +3,25 @@ from wtforms import StringField, EmailField, PasswordField, SubmitField, DateFie
 from wtforms.validators import DataRequired
 
 class RegisterForm(FlaskForm):
-    first_name = StringField('First name', validators=[DataRequired()])
-    last_name = StringField('Last name', validators=[DataRequired()])
-    email = EmailField('Email', validators=[DataRequired()])
+    first_name = StringField('First name', validators=[DataRequired("")])
+    last_name = StringField('Last name', validators=[DataRequired("")])
+    email = EmailField('Email', validators=[DataRequired("")])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Register')
 
 class LoginForm(FlaskForm):
-    email = EmailField('Email', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    email = EmailField('Email', validators=[DataRequired("")])
+    password = PasswordField('Password', validators=[DataRequired("")])
     submit = SubmitField('Sign In')
 
 class TodoForm(FlaskForm):
-    task_name = StringField('New Task', validators=[DataRequired("Empty Task")])
-    due_date = DateField('Due Date', validators=[DataRequired("01/01/2000")])
+    task_name = StringField('New Task', validators=[DataRequired("")])
+    due_date = DateField('Due Date', validators=[DataRequired("")])
     status = SelectField('Status', choices=[('Not Started', 'Not Started'), ('In Progress', 'In Progress'), ('Complete', 'Complete')])
     submit = SubmitField('Add Task')
 
 class EditTodoForm(FlaskForm):
-    task_name = StringField('Name', validators=[DataRequired()])
-    due_date = DateField('Due Date', validators=[DataRequired()])
+    task_name = StringField('Name', validators=[DataRequired("")])
+    due_date = DateField('Due Date', validators=[DataRequired("")])
     status = SelectField('Status', choices=[('Not Started', 'Not Started'), ('In Progress', 'In Progress'), ('Complete', 'Complete')])
     submit = SubmitField('Save Changes')
