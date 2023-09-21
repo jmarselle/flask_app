@@ -7,6 +7,7 @@ Steps to download and run this program:
 3. Activate the virtual environment
 `source env/bin/activate`
 4. Install the required dependencies
+   
 `pip install flask`
 
 `pip install flask_sqlalchemy`
