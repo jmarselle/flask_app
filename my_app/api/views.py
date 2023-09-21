@@ -46,13 +46,24 @@ def logout():
     logout_user()
     return redirect('/home')
 
-@todo.route('/todos')
+@todo.route('/todos', methods = ['POST','GET'])
 def todos():
     user = current_user
     todos = Task.query.filter_by(todo_owner = user.id)
     form = TodoForm()
     todos.task_name = form.task_name.data
-    return render_template('todos.html', todos = todos)
+    if request.method == 'GET':
+        return render_template('todos.html', todos = todos, form = form)
+    if request.method == 'POST':
+        if form.validate_on_submit:
+            todo = Task(task_name = form.task_name.data,
+                        status = form.status.data,
+                        due_date = form.due_date.data, 
+                        todo_owner = user.id
+                       )
+            db.session.add(todo)
+            db.session.commit()
+            return redirect('/todos')
 
 @todo.route('/add_todo', methods = ['POST','GET'])
 def add_tasks():
@@ -103,6 +114,17 @@ def delete(id):
             return redirect('/todos')
         abort(404)
     return render_template('delete_task.html', task=task)
+
+@todo.route('/delete_complete', methods=['POST'])
+def deletebulk():
+    tasks = Task.query.filter_by(status="Complete",todo_owner = current_user.id)
+    if tasks:
+        for task in tasks:
+            db.session.delete(task)
+            db.session.commit()
+        return redirect('/todos')
+    abort(404)
+
 
 def users():
     users = User.query.all()
