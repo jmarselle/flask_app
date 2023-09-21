@@ -1,39 +1,75 @@
 {% extends 'base.html'%}
 {% block content%}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
 <section class="container">
-    <a href="{{ url_for('tasks.add_tasks') }}">
-    <button class="add_button ">Add New Task</button>
-    </a>
+  <form action="{{ url_for('tasks.deletebulk') }}" method="post">
+    <input type="submit" class="delete_button " value="Clear Completed Tasks" />
+  </form>
     <br>
+        <label for="filter">Filter by Status:</label>
+          <select name="statusfilter" id="statusfilter" onchange="myFunction()">
+          <option value="Not Started">Not Started</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Complete">Complete</option>
+        </select>
+        <a href='/todos'>Reset</a>
+        <br>
+        <script>
+          function myFunction() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("statusfilter");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("todo-list");
+            tr = table.getElementsByTagName("tr");
+            for (i = 1; i < tr.length - 1; i++) {
+              td = tr[i].getElementsByClassName("status")[0].innerHTML.toUpperCase();
+                if (td == filter) {
+                  tr[i].style.display = "";
+                } else {
+                  tr[i].style.display = "none";
+                }            
+            }
+          }
+          </script>
     <br>
-   <div class="row">
-      <div class="col" >
-        <div id = "todo-list">
-         {% for todo in todos %}
-         <ul class = "list">
-            <!-- <ul id =round> -->
-            <li><b>Task: {{todo.task_name}}</b>
-            <!-- <br>TaskID: {{todo.id}} -->
-            <br>Due: {{todo.due_date.strftime('%A %b %d %Y')}}
-            <br>Status: {{todo.status}}</li>
-            <a href="{{ url_for('tasks.edit_task', id=todo.id) }}">
-                <button class="edit_button ">Edit Task</button>
-            </a>
-            <a href="{{ url_for('tasks.delete', id=todo.id) }}">
-                <button class="delete_button ">Delete Task</button>
-            </a>
-            <br>
-         </ul>
-         </form>
-         {% endfor %}
-      </div>
-      <script>
-        var options = {
-            valueNames: [ 'status' ]
-        };
-        var hackerList = new List('todo-list', options);
-      </script>
-      </div>
+    <div id="todo-list">
+        <table>
+          <thead>
+            <tr>
+              <th class="sort" data-sort="task">Task</th>
+              <th class="sort" data-sort="date">Due Date</th>
+              <th class="sort" data-sort="status">Status</th>                
+              </th>
+            </tr>
+          </thead>
+          <tbody class="list">
+            {% for todo in todos %}
+            <tr>
+              <form action="" method="post">
+              <td class="id" style="display:none;">{{todo.id}}</td>
+              <td class="task">{{todo.task_name}}</td>
+              <td class="due">{{todo.due_date.strftime('%A %b %d %Y')}}</td>
+              <td class="status">{{todo.status}}</td>
+              <td class="edit"><a class="edit_button" href="{{ url_for('tasks.edit_task', id=todo.id) }}">Edit Task</a></td>
+              <td class="remove"><a class="delete_button" href="{{ url_for('tasks.delete', id=todo.id) }}">Delete</a></td>
+              </form>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <table>
+          <form action="{{ url_for('tasks.add_tasks') }}" method="post">
+            <td> {{ form.task_name }} </td>
+            <td> {{ form.due_date}} </td>
+            <td> {{ form.status}} </td>
+            <td class = "add">
+              <input type="submit" class="add_button " value="Add Task" />
+            </td>
+          </form>
+            
+          </td>
+        </table>
+        <br><br>
    </div>
 </section>
 {% endblock%}

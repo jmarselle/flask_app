@@ -15,8 +15,8 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')
 
 class TodoForm(FlaskForm):
-    task_name = StringField('Name', validators=[DataRequired()])
-    due_date = DateField('Due Date', validators=[DataRequired()])
+    task_name = StringField('New Task', validators=[DataRequired("Empty Task")])
+    due_date = DateField('Due Date', validators=[DataRequired("01/01/2000")])
     status = SelectField('Status', choices=[('Not Started', 'Not Started'), ('In Progress', 'In Progress'), ('Complete', 'Complete')])
     submit = SubmitField('Add Task')
 
