@@ -8,8 +8,11 @@ Steps to download and run this program:
 `source env/bin/activate`
 4. Install the required dependencies
 `pip install flask`
+
 `pip install flask_sqlalchemy`
+
 `pip install flask_login`
+
 `pip install flask_wtf`
 
 Open and run `run.py`
